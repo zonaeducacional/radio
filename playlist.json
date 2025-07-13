@@ -1,92 +1,44 @@
 [
   {
-    "id": "pl1",
-    "name": "Nossa Rádio Educa 📚",
-    "description": "Músicas que eu subi no Nekoweb.",
-    "tracks": [
-      {
-        "id": "t1",
-        "title": "Música Clássica",
-        "artist": "Vários",
-        "src": "https://radioedu.nekoweb.org/Classical%20Music%20for%20Reading%20-%20Mozart,%20Chopin,%20Debussy,%20Tchaikovsky.%20[mIYzp5rcTvU].mp3",
-        "artwork": "https://radioedu.nekoweb.org/M%C3%83%C2%9ASICA%20CL%C3%83%C2%81SSICA.jpg"
-      },
-      {
-        "id": "t2",
-        "title": "Revolução Industrial",
-        "artist": "8º Ano",
-        "src": "https://radioedu.nekoweb.org/Revolu%C3%83%C2%A7%C3%83%C2%A3o%20Industrial_%20Impacto%20e%20Transforma%C3%83%C2%A7%C3%83%C2%A3o%20Social.mp3",
-        "artwork": "https://radioedu.nekoweb.org/REVOLU%C3%83%C2%87%C3%83%C2%83O%20INDUSTRIAL.jpg"
-      },
-      {
-        "id": "t3",
-        "title": "Segunda Guerra Mundial",
-        "artist": "9º Ano",
-        "src": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial_%20A%20Ascens%C3%83%C2%A3o%20e%20Queda%20Global.mp3",
-        "artwork": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial.jpg"
-  },
-      {
-        "id": "t4",
-        "title": "Mesopotâmia: Berço da Civilização",
-        "artist": "6º Ano",
-        "src": "https://radioedu.nekoweb.org/Mesopot%C3%83%C2%A2mia_%20Ber%C3%83%C2%A7o%20da%20Civiliza%C3%83%C2%A7%C3%83%C2%A3o%20e%20seus%20Imp%C3%83%C2%A9rios%20Antigos.mp3",
-        "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
-  },
-      {
-        "id": "id5",
-        "title": "Renascimento"
-        "artist": "Ano",
-        "src": "https://radioedu.nekoweb.org/O%20Renascimento%20Europeu_%20Arte,%20Humanismo%20e%20Inova%C3%83%C2%A7%C3%83%C2%A3o.mp3",
-        "artwork": "#"
-      },
-  {
-    "id": "pl3",
-    "name": "Lo-Fi para Estudar 📚",
-    "description": "Batidas relaxantes para focar.",
-    "tracks": [
-      {
-        "id": "t5",
-        "title": "Vinhetas educativas",
-        "artist": "Dj Prof.",
-        "src": "https://web2.nekoweb.org/vinhetas.mp3",
-        "artwork": "https://raw.githubusercontent.com/zonaeducacional/radio/059b2494428d7d0b1e1694d144f109831274246f/R%C3%81DIO.jpg"
-      }
-    ]
+    "id": "t1",
+    "title": "Música Clássica",
+    "artist": "Vários",
+    "src": "https://radioedu.nekoweb.org/Classical%20Music%20for%20Reading%20-%20Mozart,%20Chopin,%20Debussy,%20Tchaikovsky.%20[mIYzp5rcTvU].mp3",
+    "artwork": "https://radioedu.nekoweb.org/M%C3%83%C2%9ASICA%20CL%C3%83%C2%81SSICA.jpg"
   },
   {
-    "id": "pl4",
-    "name": "Nome da Playlist 4",
-    "description": "Descrição da Playlist 4.",
-    "tracks": []
+    "id": "t2",
+    "title": "Revolução Industrial",
+    "artist": "8º Ano",
+    "src": "https://radioedu.nekoweb.org/Revolu%C3%83%C2%A7%C3%83%C2%A3o%20Industrial_%20Impacto%20e%20Transforma%C3%83%C2%A7%C3%83%C2%A3o%20Social.mp3",
+    "artwork": "https://radioedu.nekoweb.org/REVOLU%C3%83%C2%87%C3%83%C2%83O%20INDUSTRIAL.jpg"
   },
   {
-    "id": "pl5",
-    "name": "Nome da Playlist 5",
-    "description": "Descrição da Playlist 5.",
-    "tracks": []
+    "id": "t3",
+    "title": "Segunda Guerra Mundial",
+    "artist": "9º Ano",
+    "src": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial_%20A%20Ascens%C3%83%C2%A3o%20e%20Queda%20Global.mp3",
+    "artwork": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial.jpg"
   },
   {
-    "id": "pl6",
-    "name": "Nome da Playlist 6",
-    "description": "Descrição da Playlist 6.",
-    "tracks": []
+    "id": "t4",
+    "title": "Mesopotâmia: Berço da Civilização",
+    "artist": "6º Ano",
+    "src": "https://radioedu.nekoweb.org/Mesopot%C3%83%C2%A2mia_%20Ber%C3%83%C2%A7o%20da%20Civiliza%C3%83%C2%A7%C3%83%C2%A3o%20e%20seus%20Imp%C3%83%C2%A9rios%20Antigos.mp3",
+    "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
   },
   {
-    "id": "pl7",
-    "name": "Nome da Playlist 7",
-    "description": "Descrição da Playlist 7.",
-    "tracks": []
+    "id": "t5",
+    "title": "O Renascimento Europeu",
+    "artist": "7º Ano",
+    "src": "https://radioedu.nekoweb.org/O%20Renascimento%20Europeu_%20Arte,%20Humanismo%20e%20Inova%C3%83%C2%A7%C3%83%C2%A3o.mp3",
+    "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
   },
   {
-    "id": "pl8",
-    "name": "Nome da Playlist 8",
-    "description": "Descrição da Playlist 8.",
-    "tracks": []
-  },
-  {
-    "id": "pl9",
-    "name": "Nome da Playlist 9",
-    "description": "Descrição da Playlist 9.",
-    "tracks": []
+    "id": "t6",
+    "title": "Vinhetas educativas",
+    "artist": "Dj Prof.",
+    "src": "https://web2.nekoweb.org/vinhetas.mp3",
+    "artwork": "https://raw.githubusercontent.com/zonaeducacional/radio/059b2494428d7d0b1e1694d144f109831274246f/R%C3%81DIO.jpg"
   }
 ]
