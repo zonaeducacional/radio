@@ -27,9 +27,9 @@
     "tracks": [
       {
         "id": "t3",
-        "title": "Manhã Chuvosa",
-        "artist": "DJ Café",
-        "src": "Etta James - I'd Rather Go Blind.mp3",
+        "title": "Vinhetas educativas",
+        "artist": "Dj Prof.",
+        "src": "https://web2.nekoweb.org/vinhetas.mp3",
         "artwork": "https://placehold.co/400x400/6a5acd/FFFFFF?text=LoFi"
       }
     ]
