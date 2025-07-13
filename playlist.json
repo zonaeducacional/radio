@@ -1,0 +1,37 @@
+[
+  {
+    "id": "pl1",
+    "name": "Nossa Rádio Educa 📚",
+    "description": "Músicas que eu subi no Nekoweb.",
+    "tracks": [
+      {
+        "id": "t1",
+        "title": "Música Clássica",
+        "artist": "Vários",
+        "src": "https://radioedu.nekoweb.org/Classical%20Music%20for%20Reading%20-%20Mozart,%20Chopin,%20Debussy,%20Tchaikovsky.%20[mIYzp5rcTvU].mp3",
+        "artwork": "https://radioedu.nekoweb.org/M%C3%83%C2%9ASICA%20CL%C3%83%C2%81SSICA.jpg"
+      },
+      {
+        "id": "t2",
+        "title": "MPB - Música Popular Brasileira",
+        "artist": "Vários",
+        "src": "https://radioedu.nekoweb.org/MPB%20Antigas%20-%20Marisa%20Monte,%20Z%C3%A9%20Ramalho,%20Cassia%20Eller,%20Kid%20Abelha,%20DjavanVanessa%20Da%20Mata,%20Rita%20Lee.%20[cXr5JRHDRXk].mp3",
+        "artwork": "https://radioedu.nekoweb.org/M%C3%83%C2%9ASICA%20POPULAR%20BRASILEIRA.jpg"
+      }
+    ]
+  },
+  {
+    "id": "pl2",
+    "name": "Lo-Fi para Estudar 📚",
+    "description": "Batidas relaxantes para focar.",
+    "tracks": [
+      {
+        "id": "t3",
+        "title": "Manhã Chuvosa",
+        "artist": "DJ Café",
+        "src": "audio/lofi1.mp3",
+        "artwork": "https://placehold.co/400x400/6a5acd/FFFFFF?text=LoFi"
+      }
+    ]
+  }
+]

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Rádio Nekoweb</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Chosen Palette: Dark theme com gradiente gray-900/slate-800 e destaque cyan-500. -->
+    <!-- Application Structure Plan: SPA que carrega sua configuração de um arquivo externo 'playlist.json'. A estrutura foca inteiramente na experiência do ouvinte, removendo a complexidade do painel de admin, o que é ideal para hospedagem estática como no Nekoweb. O usuário explora playlists através de um dropdown e interage com um player de mídia funcional. -->
+    <!-- Visualization & Content Choices: Fonte: Estrutura de rádio online. Objetivo: Tocar áudio e exibir informações da faixa. Método: Uso de um elemento <audio> HTML5 controlado por JavaScript para a reprodução. A UI (listas, botões) é renderizada dinamicamente a partir dos dados carregados via fetch. Interação: Controles de play/pause/next/prev manipulam o elemento <audio> e atualizam a UI. Justificativa: Esta é a abordagem mais direta e eficiente para um player de áudio em um site estático. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .header-bg { background-color: rgba(31, 41, 55, 0.7); }
+        @supports (backdrop-filter: blur(10px)) {
+            .header-bg {
+                background-color: rgba(31, 41, 55, 0.5);
+                backdrop-filter: blur(10px);
+            }
+        }
+        .tracklist-scroll::-webkit-scrollbar { width: 8px; }
+        .tracklist-scroll::-webkit-scrollbar-track { background: rgba(55, 65, 81, 0.5); border-radius: 10px; }
+        .tracklist-scroll::-webkit-scrollbar-thumb { background: #06b6d4; border-radius: 10px; }
+        .tracklist-scroll::-webkit-scrollbar-thumb:hover { background: #0891b2; }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white bg-gradient-to-br from-gray-900 to-slate-800 min-h-screen">
+
+    <audio id="audio-player" class="hidden"></audio>
+
+    <div id="app-container">
+        <header class="p-4 shadow-lg rounded-b-2xl sticky top-0 z-20 header-bg">
+            <div class="max-w-6xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="radio" class="text-cyan-400"></i>
+                    <h1 class="text-2xl font-bold text-white tracking-wider">Educa Rádio</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-6xl mx-auto p-4 sm:p-6">
+            <div id="player-view">
+                <div class="mb-6">
+                    <label for="playlist-select" class="text-sm text-gray-400">Selecione a Playlist:</label>
+                    <select id="playlist-select" class="mt-1 block w-full p-3 bg-gray-700 border-gray-600 rounded-lg shadow-sm focus:ring-cyan-500 focus:border-cyan-500 text-white"></select>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 flex flex-col items-center p-6 bg-gray-800/60 rounded-2xl shadow-xl">
+                        <div class="w-full aspect-square rounded-lg overflow-hidden shadow-2xl mb-6 transition-all duration-500 transform hover:scale-105">
+                            <img id="player-artwork" src="https://placehold.co/400x400/1F2937/FFFFFF?text=R%C3%A1dio" alt="Capa do álbum" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center w-full">
+                            <h2 id="player-title" class="text-2xl font-bold text-white truncate">Bem-vindo!</h2>
+                            <p id="player-artist" class="text-md text-gray-400">Selecione uma playlist para começar</p>
+                        </div>
+                        <div class="w-full my-6 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="h-full bg-cyan-400 transition-all duration-200" style="width: 0%;"></div>
+                        </div>
+                        <div class="flex items-center justify-center gap-6">
+                            <button id="prev-button" class="text-gray-300 hover:text-white transition-transform active:scale-90 disabled:opacity-50">
+                                <i data-lucide="skip-back" class="w-8 h-8"></i>
+                            </button>
+                            <button id="play-pause-button" class="bg-cyan-500 text-white p-5 rounded-full shadow-lg hover:bg-cyan-400 transition-all duration-200 active:scale-90 disabled:opacity-50 disabled:bg-gray-600">
+                                <i id="play-pause-icon" data-lucide="play" class="w-9 h-9"></i>
+                            </button>
+                            <button id="next-button" class="text-gray-300 hover:text-white transition-transform active:scale-90 disabled:opacity-50">
+                                <i data-lucide="skip-forward" class="w-8 h-8"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 p-6 bg-gray-800/60 rounded-2xl shadow-xl flex flex-col">
+                        <div class="flex items-center gap-3 mb-4 flex-shrink-0">
+                            <i data-lucide="list-music" class="text-cyan-400"></i>
+                            <h3 id="playlist-title" class="text-xl font-bold text-white">Lista de Músicas</h3>
+                        </div>
+                        <div class="flex-grow overflow-y-auto pr-2 tracklist-scroll h-96 md:h-auto">
+                            <ul id="track-list" class="space-y-2">
+                                <li class="text-gray-400 p-4 text-center">Carregando playlist...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="text-center p-4 text-xs text-gray-500 mt-8">
+            Rádio por Sérgio Araújo 2025
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let playlists = [];
+            let currentPlaylistId = null;
+            let currentTrackIndex = 0;
+            let isPlaying = false;
+
+            const audioPlayer = document.getElementById('audio-player');
+            const playlistSelect = document.getElementById('playlist-select');
+            const playerArtwork = document.getElementById('player-artwork');
+            const playerTitle = document.getElementById('player-title');
+            const playerArtist = document.getElementById('player-artist');
+            const playPauseBtn = document.getElementById('play-pause-button');
+            const playPauseIcon = document.getElementById('play-pause-icon');
+            const prevBtn = document.getElementById('prev-button');
+            const nextBtn = document.getElementById('next-button');
+            const trackListEl = document.getElementById('track-list');
+            const playlistTitleEl = document.getElementById('playlist-title');
+            const progressBar = document.getElementById('progress-bar');
+
+            const renderPlaylistSelector = () => {
+                playlistSelect.innerHTML = playlists.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+                if (currentPlaylistId) {
+                    playlistSelect.value = currentPlaylistId;
+                }
+            };
+            
+            const renderTracklist = () => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                if (!playlist) return;
+
+                playlistTitleEl.textContent = `Tocando Agora: ${playlist.name}`;
+                if (playlist.tracks.length === 0) {
+                    trackListEl.innerHTML = '<li class="text-gray-400 p-4 text-center">Essa playlist está vazia.</li>';
+                    return;
+                }
+
+                trackListEl.innerHTML = playlist.tracks.map((track, index) => `
+                    <li data-index="${index}" class="track-item flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-all duration-200 ${index === currentTrackIndex ? 'bg-cyan-500/30' : 'hover:bg-gray-700/70'}">
+                        <div class="w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
+                            <img src="${track.artwork}" alt="${track.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/100x100/1F2937/FFFFFF?text=Art';">
+                        </div>
+                        <div class="flex-grow">
+                            <p class="font-semibold ${index === currentTrackIndex ? 'text-cyan-400' : 'text-white'}">${track.title}</p>
+                            <p class="text-sm text-gray-400">${track.artist}</p>
+                        </div>
+                        ${(index === currentTrackIndex && isPlaying) ? '<i data-lucide="volume-2" class="text-cyan-400 animate-pulse w-5 h-5"></i>' : ''}
+                    </li>
+                `).join('');
+                lucide.createIcons();
+            };
+
+            const renderPlayerUI = () => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                const track = playlist?.tracks[currentTrackIndex];
+
+                if (track) {
+                    playerArtwork.src = track.artwork;
+                    playerTitle.textContent = track.title;
+                    playerArtist.textContent = track.artist;
+                    playPauseBtn.disabled = false;
+                    prevBtn.disabled = false;
+                    nextBtn.disabled = false;
+                    document.title = isPlaying ? `▶️ ${track.title}` : `⏸️ ${track.title}`;
+                } else {
+                    playPauseBtn.disabled = true;
+                    prevBtn.disabled = true;
+                    nextBtn.disabled = true;
+                    if(playlists.length > 0) {
+                        playerTitle.textContent = 'Playlist Vazia';
+                        playerArtist.textContent = 'Adicione músicas ao seu arquivo playlist.json';
+                    }
+                }
+                playPauseIcon.setAttribute('data-lucide', isPlaying ? 'pause' : 'play');
+                lucide.createIcons();
+                renderTracklist();
+            };
+            
+            const loadTrack = (trackIndex) => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                if (!playlist || !playlist.tracks[trackIndex]) return;
+                
+                currentTrackIndex = trackIndex;
+                const track = playlist.tracks[currentTrackIndex];
+                audioPlayer.src = track.src;
+                renderPlayerUI();
+            };
+
+            const playTrack = () => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                if (!playlist || playlist.tracks.length === 0) return;
+                
+                isPlaying = true;
+                audioPlayer.play().catch(e => console.error("Erro ao tocar áudio:", e));
+                renderPlayerUI();
+            };
+
+            const pauseTrack = () => {
+                isPlaying = false;
+                audioPlayer.pause();
+                renderPlayerUI();
+            };
+
+            const handlePlayPause = () => {
+                if (isPlaying) {
+                    pauseTrack();
+                } else {
+                    playTrack();
+                }
+            };
+            
+            const handleNext = () => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                if (!playlist || playlist.tracks.length === 0) return;
+                const newIndex = (currentTrackIndex + 1) % playlist.tracks.length;
+                loadTrack(newIndex);
+                playTrack();
+            };
+
+            const handlePrev = () => {
+                const playlist = playlists.find(p => p.id === currentPlaylistId);
+                if (!playlist || playlist.tracks.length === 0) return;
+                const newIndex = (currentTrackIndex - 1 + playlist.tracks.length) % playlist.tracks.length;
+                loadTrack(newIndex);
+                playTrack();
+            };
+
+            const handleTrackClick = (e) => {
+                const trackItem = e.target.closest('.track-item');
+                if (trackItem) {
+                    const newIndex = parseInt(trackItem.dataset.index);
+                    loadTrack(newIndex);
+                    playTrack();
+                }
+            };
+
+            const handlePlaylistSelect = (e) => {
+                currentPlaylistId = e.target.value;
+                loadTrack(0);
+                pauseTrack(); // Pausa ao trocar de playlist
+                progressBar.style.width = '0%';
+                renderPlayerUI();
+            };
+            
+            const updateProgressBar = () => {
+                if (!audioPlayer.duration) return;
+                const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                progressBar.style.width = `${percentage}%`;
+            };
+
+            async function initializeApp() {
+                try {
+                    const response = await fetch('playlist.json');
+                    if (!response.ok) {
+                        throw new Error(`Não foi possível carregar playlist.json: ${response.statusText}`);
+                    }
+                    playlists = await response.json();
+
+                    if (playlists.length > 0) {
+                        currentPlaylistId = playlists[0].id;
+                        renderPlaylistSelector();
+                        loadTrack(0);
+                        pauseTrack();
+                    } else {
+                        playerTitle.textContent = 'Nenhuma playlist encontrada';
+                        playerArtist.textContent = 'Crie seu arquivo playlist.json';
+                        trackListEl.innerHTML = '<li class="text-gray-400 p-4 text-center">Crie e configure seu arquivo playlist.json</li>';
+                    }
+                } catch (error) {
+                    console.error(error);
+                    playerTitle.textContent = 'Erro ao carregar';
+                    playerArtist.textContent = 'Verifique o arquivo playlist.json';
+                    trackListEl.innerHTML = `<li class="text-red-400 p-4 text-center">Erro: ${error.message}</li>`;
+                }
+
+                playlistSelect.addEventListener('change', handlePlaylistSelect);
+                playPauseBtn.addEventListener('click', handlePlayPause);
+                nextBtn.addEventListener('click', handleNext);
+                prevBtn.addEventListener('click', handlePrev);
+                trackListEl.addEventListener('click', handleTrackClick);
+                audioPlayer.addEventListener('timeupdate', updateProgressBar);
+                audioPlayer.addEventListener('ended', handleNext);
+                
+                lucide.createIcons();
+            }
+
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
