@@ -19,7 +19,7 @@
         "artwork": "https://radioedu.nekoweb.org/REVOLU%C3%83%C2%87%C3%83%C2%83O%20INDUSTRIAL.jpg"
       },
       {
-        "id": "t4",
+        "id": "t3",
         "title": "Segunda Guerra Mundial",
         "artist": "8º Ano",
         "src": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial_%20A%20Ascens%C3%83%C2%A3o%20e%20Queda%20Global.mp3",
@@ -29,29 +29,29 @@
   },
   {
     "id": "pl2",
-    "name": "Lo-Fi para Estudar 📚",
-    "description": "Batidas relaxantes para focar.",
+    "name": "Mesopotâmia",
+    "description": "6º Ano",
     "tracks": [
       {
-        "id": "t3",
-        "title": "Vinhetas educativas",
-        "artist": "Dj Prof.",
-        "src": "https://web2.nekoweb.org/vinhetas.mp3",
-        "artwork": "https://raw.githubusercontent.com/zonaeducacional/radio/059b2494428d7d0b1e1694d144f109831274246f/R%C3%81DIO.jpg"
+        "id": "t4",
+        "title": "Mesopotâmia: Berço da Civilização",
+        "artist": "6º Ano",
+        "src": "https://radioedu.nekoweb.org/Mesopot%C3%83%C2%A2mia_%20Ber%C3%83%C2%A7o%20da%20Civiliza%C3%83%C2%A7%C3%83%C2%A3o%20e%20seus%20Imp%C3%83%C2%A9rios%20Antigos.mp3",
+        "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
       }
     ]
   },
   {
     "id": "pl3",
-    "name": "Mesopotâmia",
-    "description": "6º Ano",
+    "name": "Lo-Fi para Estudar 📚",
+    "description": "Batidas relaxantes para focar.",
     "tracks": [
       {
         "id": "t5",
-        "title": "Mesopotâmia: Berço da Civilização",
-        "artist": "6º Ano",
-        "src": "https://radioedu.nekoweb.org/Mesopot%C3%83%C2%A2mia_%20Ber%C3%83%C2%A7o%20da%20Civiliza%C3%83%C2%A7%C3%83%C2%A3o%20e%20seus%20Imp%C3%83%C2%A9rios%20Antigos.mp3",
-        "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
+        "title": "Vinhetas educativas",
+        "artist": "Dj Prof.",
+        "src": "https://web2.nekoweb.org/vinhetas.mp3",
+        "artwork": "https://raw.githubusercontent.com/zonaeducacional/radio/059b2494428d7d0b1e1694d144f109831274246f/R%C3%81DIO.jpg"
       }
     ]
   },
@@ -83,6 +83,12 @@
     "id": "pl8",
     "name": "Nome da Playlist 8",
     "description": "Descrição da Playlist 8.",
+    "tracks": []
+  },
+  {
+    "id": "pl9",
+    "name": "Nome da Playlist 9",
+    "description": "Descrição da Playlist 9.",
     "tracks": []
   }
 ]
