@@ -21,25 +21,16 @@
       {
         "id": "t3",
         "title": "Segunda Guerra Mundial",
-        "artist": "8º Ano",
+        "artist": "9º Ano",
         "src": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial_%20A%20Ascens%C3%83%C2%A3o%20e%20Queda%20Global.mp3",
         "artwork": "https://radioedu.nekoweb.org/Segunda%20Guerra%20Mundial.jpg"
-      }
-    ]
   },
-  {
-    "id": "pl2",
-    "name": "Mesopotâmia",
-    "description": "6º Ano",
-    "tracks": [
       {
         "id": "t4",
         "title": "Mesopotâmia: Berço da Civilização",
         "artist": "6º Ano",
         "src": "https://radioedu.nekoweb.org/Mesopot%C3%83%C2%A2mia_%20Ber%C3%83%C2%A7o%20da%20Civiliza%C3%83%C2%A7%C3%83%C2%A3o%20e%20seus%20Imp%C3%83%C2%A9rios%20Antigos.mp3",
         "artwork": "COLOQUE_O_LINK_DA_IMAGEM_AQUI.jpg"
-      }
-    ]
   },
   {
     "id": "pl3",
